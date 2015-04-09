@@ -1,5 +1,5 @@
 {
-  "name": "elevation-server",
+  "name": "elevation-service",
   "version": "1.0.0",
   "description": "Add elevation data to GeoJSON over HTTP",
   "main": "index.js",
