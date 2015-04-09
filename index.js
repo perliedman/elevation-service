@@ -13,6 +13,12 @@ app.use(function(req, res, next) {
 });
 app.post('/geojson', function(req, res) {
     var geojson = req.body;
+
+    if (!geojson || Object.keys(geojson).length === 0) {
+        res.status(400).send('Error: invalid geojson.');
+        return;
+    }
+
     addElevation(geojson, tiles, function(err) {
         if (err) {
             res.status(500).send(err);
