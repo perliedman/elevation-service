@@ -6,7 +6,11 @@ var addElevation = require('geojson-elevation').addElevation,
     tiles = new TileSet('./data');
 
 app.use(bodyParser.json());
-
+app.use(function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
 app.post('/geojson', function(req, res) {
     var geojson = req.body;
     addElevation(geojson, tiles, function(err) {
