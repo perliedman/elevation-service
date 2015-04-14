@@ -2,6 +2,11 @@
   "name": "elevation-service",
   "version": "1.0.0",
   "description": "Add elevation data to GeoJSON over HTTP",
+  "homepage": "https://github.com/perliedman/elevation-service",
+  "repository": {
+    "type": "git",
+    "https://github.com/perliedman/elevation-service.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
