@@ -5,7 +5,7 @@
   "homepage": "https://github.com/perliedman/elevation-service",
   "repository": {
     "type": "git",
-    "https://github.com/perliedman/elevation-service.git"
+    "url": "https://github.com/perliedman/elevation-service.git"
   },
   "main": "index.js",
   "scripts": {
