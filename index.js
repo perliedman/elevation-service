@@ -1,9 +1,24 @@
 var addElevation = require('geojson-elevation').addElevation,
     TileSet = require('node-hgt').TileSet,
+    ImagicoElevationDownloader = require('node-hgt').ImagicoElevationDownloader,
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express(),
-    tiles = new TileSet('./data');
+    tiles,
+    tileDownloader,
+    tileDirectory = process.env.TILE_DIRECTORY;
+
+if(!tileDirectory) {
+    tileDirectory = "./data";
+}
+
+if(process.env.TILE_DOWNLOADER) {
+    if(process.env.TILE_DOWNLOADER == "imagico") {
+        tileDownloader = new ImagicoElevationDownloader();
+    }
+}
+
+tiles = new TileSet(tileDirectory, {downloader:tileDownloader});
 
 app.use(bodyParser.json());
 app.use(function(req, res, next) {
