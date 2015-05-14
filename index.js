@@ -4,18 +4,23 @@ var addElevation = require('geojson-elevation').addElevation,
     express = require('express'),
     bodyParser = require('body-parser'),
     app = express(),
+    tileDirectory = process.env.TILE_DIRECTORY,
     tiles,
     tileDownloader,
-    tileDirectory = process.env.TILE_DIRECTORY;
+    noData;
 
-if(!tileDirectory) {
-    tileDirectory = "./data";
+if (!tileDirectory) {
+    tileDirectory = './data';
 }
 
-if(process.env.TILE_DOWNLOADER) {
-    if(process.env.TILE_DOWNLOADER == "imagico") {
-        tileDownloader = new ImagicoElevationDownloader();
-    }
+if (!process.env.TILE_DOWNLOADER || process.env.TILE_DOWNLOADER === 'imagico') {
+    tileDownloader = new ImagicoElevationDownloader(tileDirectory);
+} else if(process.env.TILE_DOWNLOADER === 'none') {
+    tileDownloader = undefined;
+}
+
+if (process.env.NO_DATA) {
+    noData = parseInt(process.env.NO_DATA);
 }
 
 tiles = new TileSet(tileDirectory, {downloader:tileDownloader});
@@ -41,7 +46,7 @@ app.post('/geojson', function(req, res) {
         } else {
             res.send(JSON.stringify(geojson));
         }
-    });
+    }, noData);
 });
 
 var server = app.listen(5001, function() {
