@@ -25,7 +25,12 @@ if (process.env.NO_DATA) {
 
 tiles = new TileSet(tileDirectory, {downloader:tileDownloader});
 
-app.use(bodyParser.json());
+var maxPostSize = "500kb";
+if (process.env.MAX_POST_SIZE) {
+    maxPostSize = process.env.MAX_POST_SIZE;
+}
+
+app.use(bodyParser.json({limit: maxPostSize}));
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
