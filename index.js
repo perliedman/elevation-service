@@ -9,10 +9,16 @@ var L = require('leaflet'),
     elevationWidget = new ElevationWidget(),
     dataLayer = L.geoJson().addTo(map),
     fetchElevationData = function(geojson) {
-        var data = (geojson.type === 'Feature' || geojson.type === 'FeatureCollection') ? geojson : feature(geojson);
+        var data = (geojson.type === 'Feature' || geojson.type === 'FeatureCollection') ? geojson : feature(geojson),
+            dataBounds;
 
         dataLayer.clearLayers();
         dataLayer.addData(data);
+        dataBounds = dataLayer.getBounds();
+
+        if (!map.getBounds().contains(dataBounds)) {
+            map.fitBounds(dataBounds);
+        }
 
         reqwest({
                 url: 'http://data.cykelbanor.se/elevation/geojson',
