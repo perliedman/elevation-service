@@ -20,6 +20,8 @@ var L = require('leaflet'),
             map.fitBounds(dataBounds);
         }
 
+        throbber.style.display = 'block';
+
         reqwest({
                 url: 'http://data.cykelbanor.se/elevation/geojson',
                 method: 'POST',
@@ -30,12 +32,25 @@ var L = require('leaflet'),
             .then(function(response) {
                 elevationWidget.clear();
                 elevationWidget.addData(response.geometry);
+                throbber.style.display = 'none';
+            })
+            .catch(function(err) {
+                // TODO: show error message
+                throbber.style.display = 'none';
             });
-    };
+    },
+    throbber = L.DomUtil.create('img', 'throbber');
 
 L.Icon.Default.imagePath = 'assets/images';
 
+throbber.src = 'assets/throbber.gif';
+geoJsonControl.getContainer().appendChild(throbber);
+
 geoJsonControl.getContainer().appendChild(elevationWidget.onAdd());
+
+L.DomEvent.on(L.DomUtil.get('bannerWrapper'), 'click', function() {
+    L.DomUtil.get('bannerWrapper').style.display = 'none';
+});
 
 L.tileLayer('http://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGllZG1hbiIsImEiOiIzNzkzMWI4ZWI3Mjk2YThlNzQwMzllODdiYzY0ZTBhOSJ9.LvDo_NWlxJ_6FE1w-dmOPQ')
     .addTo(map);

@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" href="assets/leaflet.css">
     <style type="text/css">
         body {
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -37,6 +38,11 @@
             margin-left: 4px;
         }
 
+        .elevation-control .stats {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
         .elevation-control path { 
           stroke: steelblue;
           stroke-width: 1;
@@ -50,10 +56,67 @@
             stroke-width: 1;
             shape-rendering: crispEdges;
         }
+
+        .throbber {
+            display: none;
+        }
+
+        .bannerWrapper {
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .banner {
+            width: 33%;
+            margin-top: 96px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+            padding: 16px;
+        }
+
+        .banner a.close {
+            color: black;
+            text-decoration: none;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 4px;
+        }
     </style>
 </head>
 <body>
     <div id="map" class="map"></div>
+    <div id="bannerWrapper" class="bannerWrapper">
+        <div class="banner">
+            <a class="close" href="javascript:void()">&times;</a>
+            <h1>Elevation Service</h1>
+            <p>
+                A Node.js web service to add elevation data
+                to GeoJSON.
+            </p>
+            <p>
+                Post GeoJSON, and the same GeoJSON will be returned,
+                but elevation data added to each coordinate.
+            </p>
+            <p>
+                Try clicking the map, or type some GeoJSON into the
+                text area to the right to try it out.
+            </p>
+            <p>
+                <a href="https://github.com/perliedman/elevation-service/">
+                    Fork me on GitHub
+                </a>
+            </p>
+        </div>
+    </div>
     <script type="text/javascript" src="site.js"></script>
 </body>
 </html>

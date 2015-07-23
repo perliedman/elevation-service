@@ -8,7 +8,7 @@ module.exports = L.Class.extend({
     },
 
     addData: function(geojson) {
-        var margin = {top: 4, right: 10, bottom: 20, left: 24},
+        var margin = {top: 4, right: 16, bottom: 20, left: 24},
             width = 320 - margin.left - margin.right,
             height = 80 - margin.top - margin.bottom;
 

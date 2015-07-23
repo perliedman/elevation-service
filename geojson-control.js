@@ -12,6 +12,7 @@ module.exports = L.Control.extend({
 
         L.DomEvent.disableClickPropagation(container);
 
+        input.placeholder = 'Enter GeoJSON or click map';
         submitBtn.type = 'button';
         submitBtn.innerHTML = 'Submit';
         L.DomEvent.on(submitBtn, 'click', function() {
@@ -27,6 +28,7 @@ module.exports = L.Control.extend({
 
     setData: function(geojson) {
         this._input.value = JSON.stringify(geojson, null, '  ');
+        this._errorList.innerHTML = '';
     },
 
     getContainer: function() {
