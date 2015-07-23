@@ -1,57 +1,47 @@
-var addElevation = require('geojson-elevation').addElevation,
-    TileSet = require('node-hgt').TileSet,
-    ImagicoElevationDownloader = require('node-hgt').ImagicoElevationDownloader,
-    express = require('express'),
-    bodyParser = require('body-parser'),
-    app = express(),
-    tileDirectory = process.env.TILE_DIRECTORY,
-    tiles,
-    tileDownloader,
-    noData;
+var L = require('leaflet'),
+    point = require('turf-point'),
+    feature = require('turf-feature'),
+    reqwest = require('reqwest'),
+    GeoJsonControl = require('./geojson-control'),
+    ElevationWidget = require('./elevation'),
+    map = L.map('map').setView([57.7, 11.9], 10),
+    geoJsonControl = new GeoJsonControl({position: 'topright'}).addTo(map),
+    elevationWidget = new ElevationWidget(),
+    dataLayer = L.geoJson().addTo(map),
+    fetchElevationData = function(geojson) {
+        var data = (geojson.type === 'Feature' || geojson.type === 'FeatureCollection') ? geojson : feature(geojson);
 
-if (!tileDirectory) {
-    tileDirectory = './data';
-}
+        dataLayer.clearLayers();
+        dataLayer.addData(data);
 
-if (!process.env.TILE_DOWNLOADER || process.env.TILE_DOWNLOADER === 'imagico') {
-    tileDownloader = new ImagicoElevationDownloader(tileDirectory);
-} else if(process.env.TILE_DOWNLOADER === 'none') {
-    tileDownloader = undefined;
-}
+        reqwest({
+                url: 'http://data.cykelbanor.se/elevation/geojson',
+                method: 'POST',
+                type: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            })
+            .then(function(response) {
+                elevationWidget.clear();
+                elevationWidget.addData(response.geometry);
+            });
+    };
 
-if (process.env.NO_DATA) {
-    noData = parseInt(process.env.NO_DATA);
-}
+L.Icon.Default.imagePath = 'assets/images';
 
-tiles = new TileSet(tileDirectory, {downloader:tileDownloader});
+geoJsonControl.getContainer().appendChild(elevationWidget.onAdd());
 
-app.use(bodyParser.json());
-app.use(function(req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.contentType('application/json');
-    next();
-});
-app.post('/geojson', function(req, res) {
-    var geojson = req.body;
+L.tileLayer('http://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGllZG1hbiIsImEiOiIzNzkzMWI4ZWI3Mjk2YThlNzQwMzllODdiYzY0ZTBhOSJ9.LvDo_NWlxJ_6FE1w-dmOPQ')
+    .addTo(map);
 
-    if (!geojson || Object.keys(geojson).length === 0) {
-        res.status(400).send('Error: invalid geojson.');
-        return;
-    }
-
-    addElevation(geojson, tiles, function(err) {
-        if (err) {
-            res.status(500).send(err);
-        } else {
-            res.send(JSON.stringify(geojson));
-        }
-    }, noData);
+geoJsonControl.on('submitgeojson', function(e) {
+    fetchElevationData(e.geojson);
 });
 
-var server = app.listen(5001, function() {
-    var host = server.address().address;
-    var port = server.address().port;
+map.on('click', function(e) {
+    var ll = e.latlng,
+        p = point([ll.lng, ll.lat]);
 
-    console.log('elevation-server listening at http://%s:%s', host, port);
+    geoJsonControl.setData(p);
+    fetchElevationData(p);
 });
