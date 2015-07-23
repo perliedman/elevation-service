@@ -3,7 +3,7 @@ elevation-service
 
 Elevation data for your GeoJSON as a micro service. Yes, really!
 
-You can try (or even use, for fun and profit) the service here: [http://data.cykelbanor.se/elevation/geojson](http://data.cykelbanor.se/elevation/geojson).
+You can try it out in [the elevation-service demo app](http://www.liedman.net/elevation-service/).
 
 You might also be interested in [geojson-elevation](https://github.com/perliedman/geojson-elevation) and 
 [node-hgt](https://github.com/perliedman/node-hgt), which this module builds upon.
