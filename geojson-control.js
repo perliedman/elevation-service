@@ -35,6 +35,10 @@ module.exports = L.Control.extend({
         return this._container;
     },
 
+    setError: function(message) {
+        this._errorList.innerHTML = message;
+    },
+
     _validate: function(s) {
         var errors = geojsonhint.hint(s);
         if (errors && errors.length) {

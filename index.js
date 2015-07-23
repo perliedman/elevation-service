@@ -35,8 +35,18 @@ var L = require('leaflet'),
                 throbber.style.display = 'none';
             })
             .catch(function(err) {
+                var errObj;
+
                 // TODO: show error message
                 throbber.style.display = 'none';
+                elevationWidget.clear();
+
+                errObj = JSON.parse(err.response);
+                if (errObj.code === 'ENOENT') {
+                    geoJsonControl.setError('Missing elevation data.');
+                } else {
+                    geoJsonControl.setError('Unknown error (' + errObj.code + ').');
+                }
             });
     },
     throbber = L.DomUtil.create('img', 'throbber');
