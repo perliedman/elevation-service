@@ -54,6 +54,10 @@ app.post('/geojson', function(req, res) {
     }, noData);
 });
 
+app.get('/status', function(req, res) {
+    res.send();
+});
+
 var server = app.listen(5001, function() {
     var host = server.address().address;
     var port = server.address().port;
