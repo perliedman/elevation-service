@@ -23,7 +23,7 @@ var L = require('leaflet'),
         throbber.style.display = 'block';
 
         reqwest({
-                url: 'http://data.cykelbanor.se/elevation/geojson',
+                url: 'https://data.cykelbanor.se/elevation/geojson',
                 method: 'POST',
                 type: 'json',
                 contentType: 'application/json',
@@ -62,7 +62,7 @@ L.DomEvent.on(L.DomUtil.get('bannerWrapper'), 'click', function() {
     L.DomUtil.get('bannerWrapper').style.display = 'none';
 });
 
-L.tileLayer('http://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGllZG1hbiIsImEiOiIzNzkzMWI4ZWI3Mjk2YThlNzQwMzllODdiYzY0ZTBhOSJ9.LvDo_NWlxJ_6FE1w-dmOPQ')
+L.tileLayer('https://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGllZG1hbiIsImEiOiIzNzkzMWI4ZWI3Mjk2YThlNzQwMzllODdiYzY0ZTBhOSJ9.LvDo_NWlxJ_6FE1w-dmOPQ')
     .addTo(map);
 
 geoJsonControl.on('submitgeojson', function(e) {
