@@ -228,7 +228,7 @@ var L = require('leaflet'),
                 if (errObj.code === 'ENOENT') {
                     geoJsonControl.setError('Missing elevation data.');
                 } else {
-                    geoJsonControl.setError('Unknown error (' + errObj.code + ').');
+                    geoJsonControl.setError('Unknown error (' + (errObj.message || errObj.code) + ').');
                 }
             });
     },
