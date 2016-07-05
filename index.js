@@ -47,7 +47,9 @@ app.post('/geojson', function(req, res) {
 
     addElevation(geojson, tiles, function(err) {
         if (err) {
-            res.status(500).send(err);
+            var errMsg = JSON.stringify(err);
+            process.stderr.write(errMsg + '\n');
+            res.status(500).send(errMsg);
         } else {
             res.send(JSON.stringify(geojson));
         }
