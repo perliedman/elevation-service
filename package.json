@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "TILE_DIRECTORY=test/data mocha"
   },
   "keywords": [
     "elevation",
@@ -23,5 +23,10 @@
     "express": "^4.12.3",
     "geojson-elevation": "^1.1.0",
     "node-hgt": "^1.2.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
   }
 }
