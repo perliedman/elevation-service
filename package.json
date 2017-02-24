@@ -19,7 +19,7 @@
   "author": "Per Liedman <per@liedman.net>",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.15.2",
+    "body-parser": "^1.16.1",
     "express": "^4.12.3",
     "geojson-elevation": "^1.1.0",
     "node-hgt": "^1.2.1"
