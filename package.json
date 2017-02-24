@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.1",
-    "express": "^4.12.3",
+    "express": "^4.14.1",
     "geojson-elevation": "^1.1.0",
     "node-hgt": "^1.2.1"
   },
