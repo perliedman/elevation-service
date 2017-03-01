@@ -1,6 +1,8 @@
 elevation-service
 =================
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/perliedman/elevation-service.svg)](https://greenkeeper.io/)
+
 Elevation data for your GeoJSON as a micro service. Yes, really!
 
 You can try it out in [the elevation-service demo app](http://www.liedman.net/elevation-service/).
