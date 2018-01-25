@@ -21,7 +21,7 @@ npm install
 and fire it up:
 
 ```
-node index.js
+npm start
 ```
 
 It runs on port 3000 for now.
