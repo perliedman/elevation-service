@@ -9,7 +9,9 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "TILE_DIRECTORY=test/data mocha"
+    "start": "micro",
+    "dev": "micro-dev",
+    "test": "TILE_DIRECTORY=test/data ava"
   },
   "keywords": [
     "elevation",
@@ -19,14 +21,17 @@
   "author": "Per Liedman <per@liedman.net>",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.16.1",
-    "express": "^4.14.1",
     "geojson-elevation": "^1.1.0",
+    "micro": "^9.1.0",
     "node-hgt": "^1.2.1"
   },
   "devDependencies": {
+    "ava": "^0.24.0",
     "chai": "^4.0.1",
     "chai-http": "^3.0.0",
-    "mocha": "^3.2.0"
+    "micro-dev": "^2.2.0",
+    "mocha": "^3.2.0",
+    "request-promise-native": "^1.0.5",
+    "test-listen": "^1.1.0"
   }
 }
