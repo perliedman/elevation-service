@@ -24,7 +24,7 @@ and fire it up:
 node index.js
 ```
 
-It runs on port 5001 for now.
+It runs on port 3000 for now.
 
-Post a GeoJSON object to its only endpoint, `/geojson`, and you will get the same object back, but its
+Post a GeoJSON object to its only endpoint, `/`, and you will get the same object back, but its
 coordinates will have a third component containing elevation added.
