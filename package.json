@@ -1,6 +1,6 @@
 {
   "name": "elevation-service",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Add elevation data to GeoJSON over HTTP",
   "homepage": "https://github.com/perliedman/elevation-service",
   "repository": {
