@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir assets
+mkdir -p assets
 cp -a node_modules/leaflet/dist/* assets/
 
-browserify index.js -o site.js
+npx browserify index.js -o site.js
