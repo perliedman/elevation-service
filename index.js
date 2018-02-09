@@ -23,7 +23,7 @@ var L = require('leaflet'),
         throbber.style.display = 'block';
 
         reqwest({
-                url: 'https://data.cykelbanor.se/elevation/geojson',
+                url: 'https://data.cykelbanor.se/elevation/geojson?access_token=7be1f5a210e23ed36bc921d637aebc10',
                 method: 'POST',
                 type: 'json',
                 contentType: 'application/json',
