@@ -51,7 +51,7 @@ var L = require('leaflet'),
     },
     throbber = L.DomUtil.create('img', 'throbber');
 
-L.Icon.Default.imagePath = 'assets/images';
+L.Icon.Default.imagePath = 'assets/images/';
 
 throbber.src = 'assets/throbber.gif';
 geoJsonControl.getContainer().appendChild(throbber);
