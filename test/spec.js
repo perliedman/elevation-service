@@ -24,3 +24,24 @@ test('should add elevation data for point', async t => {
 
   service.close()
 });
+
+test('should handle multiple parallel requests', async t => {
+  const service = micro(app)
+  const uri = await listen(service)
+
+  for (var i = 0; i < 10; i++) {
+    const body = await request({
+      uri,
+      method: 'POST',
+      body: {
+        type: 'Point',
+        coordinates: [11.9, 57.7]
+      },
+      json: true
+    })
+
+    t.is(body.type, 'Point')
+  }
+
+  service.close()
+});
