@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "ava": "^0.25.0",
-    "micro-dev": "^2.2.0",
+    "micro-dev": "^3.0.0",
     "request-promise-native": "^1.0.5",
     "test-listen": "^1.1.0"
   }
