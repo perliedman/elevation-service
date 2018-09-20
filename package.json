@@ -4,8 +4,8 @@
   "description": "Demo for elevation-server module",
   "main": "index.js",
   "scripts": {
-    "build": "./build.sh",
-    "watch": "./watch.sh",
+    "build": "sh ./build.sh",
+    "watch": "sh ./watch.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
