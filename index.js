@@ -4,6 +4,7 @@ var L = require('leaflet'),
     reqwest = require('reqwest'),
     GeoJsonControl = require('./geojson-control'),
     ElevationWidget = require('./elevation'),
+    config = require('./config'),
     map = L.map('map').setView([57.7, 11.9], 10),
     geoJsonControl = new GeoJsonControl({position: 'topright'}).addTo(map),
     elevationWidget = new ElevationWidget(),
@@ -62,7 +63,10 @@ L.DomEvent.on(L.DomUtil.get('bannerWrapper'), 'click', function() {
     L.DomUtil.get('bannerWrapper').style.display = 'none';
 });
 
-L.tileLayer('https://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGllZG1hbiIsImEiOiIzNzkzMWI4ZWI3Mjk2YThlNzQwMzllODdiYzY0ZTBhOSJ9.LvDo_NWlxJ_6FE1w-dmOPQ')
+L.tileLayer('https://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token={token}', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        token: config.apiToken
+    })
     .addTo(map);
 
 geoJsonControl.on('submitgeojson', function(e) {
