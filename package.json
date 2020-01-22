@@ -26,7 +26,7 @@
     "node-hgt": "^1.2.2"
   },
   "devDependencies": {
-    "ava": "^2.0.0",
+    "ava": "^3.0.0",
     "micro-dev": "^3.0.0",
     "request-promise-native": "^1.0.5",
     "test-listen": "^1.1.0"
