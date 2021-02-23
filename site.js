@@ -224,7 +224,7 @@ var L = require('leaflet'),
         throbber.style.display = 'block';
 
         reqwest({
-                url: 'https://data.cykelbanor.se/elevation/geojson?access_token=7be1f5a210e23ed36bc921d637aebc10',
+                url: 'https://data.cykelbanor.se/elevation/geojson?access_token=voojiaChoV1EiTeed9shohngiepohbah',
                 method: 'POST',
                 type: 'json',
                 contentType: 'application/json',
@@ -263,7 +263,7 @@ L.DomEvent.on(L.DomUtil.get('bannerWrapper'), 'click', function() {
     L.DomUtil.get('bannerWrapper').style.display = 'none';
 });
 
-L.tileLayer('https://api.mapbox.com/v4/mapbox.outdoors/{z}/{x}/{y}.png?access_token={token}', {
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={token}', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         token: config.apiToken
     })
