@@ -65,7 +65,9 @@ L.DomEvent.on(L.DomUtil.get('bannerWrapper'), 'click', function() {
 
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token={token}', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        token: config.apiToken
+        token: config.apiToken,
+	tileSize: 512,
+	zoomOffset: -1
     })
     .addTo(map);
 
