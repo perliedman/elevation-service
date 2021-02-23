@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/perliedman/elevation-service",
   "devDependencies": {
-    "browserify": "^11.0.0",
-    "http-server": "^0.8.0",
-    "watchify": "^3.3.0"
+    "browserify": "^17.0.0",
+    "http-server": "^0.12.3",
+    "watchify": "^4.0.0"
   },
   "dependencies": {
     "d3": "^3.5.6",
